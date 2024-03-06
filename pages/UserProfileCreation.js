@@ -77,20 +77,101 @@ exports.UserProfileCreation = class UserProfileCreation {
     }
 
     async submitEmailInval(
+            firstName,
+            lastName,
+            emailInval,
+            password,
+            confirmPassword,
+
+        ) {
+            await this.firstName_textbox.fill(firstName);
+            await this.lastName_textbox.fill(lastName);
+            await this.emailInval_textbox.fill(emailInval);
+            await this.password_textbox.fill(password);
+            await this.passwordConfirm_textbox.fill(confirmPassword);
+            await this.submitbutton.click();
+        }
+        // async getErrorMessage() {
+        //     // Assuming your error message is displayed in a <div> element with class 'error-message'
+        //     await this.page.waitForSelector('.error-message');
+        //     const errorMessageElement = await this.page.$('.error-message');
+        //     return await errorMessageElement.textContent();
+        // }
+
+
+    async submitFirsoRtLanstInval(
         firstName,
         lastName,
-        emailInval,
+        email,
         password,
         confirmPassword,
+        dateOfBirth,
+        phoneNumber,
+        address,
+        linkedInUrl,
+        gitHubURL
 
     ) {
         await this.firstName_textbox.fill(firstName);
         await this.lastName_textbox.fill(lastName);
-        await this.emailInval_textbox.fill(emailInval);
+        await this.email_textbox.fill(email);
         await this.password_textbox.fill(password);
         await this.passwordConfirm_textbox.fill(confirmPassword);
+        await this.gendercke_textbox.check();
+
+        await this.page.evaluate(({ dateOfBirth }) => {
+            document.getElementById('dob').value = dateOfBirth;
+        }, { dateOfBirth });
+
+        await this.phonenumber.fill(phoneNumber);
+
+
+
+        await this.page.evaluate(({ address }) => {
+            document.getElementById('address').value = address;
+        }, { address });
+
+
+        await this.LinkedInUrl.fill(linkedInUrl);
+        await this.GitHubURL.fill(gitHubURL);
         await this.submitbutton.click();
     }
 
+    async submitincorrphone(
+        firstName,
+        lastName,
+        email,
+        password,
+        confirmPassword,
+        dateOfBirth,
+        phoneNumber,
+        address,
+        linkedInUrl,
+        gitHubURL
 
+    ) {
+        await this.firstName_textbox.fill(firstName);
+        await this.lastName_textbox.fill(lastName);
+        await this.email_textbox.fill(email);
+        await this.password_textbox.fill(password);
+        await this.passwordConfirm_textbox.fill(confirmPassword);
+        await this.gendercke_textbox.check();
+
+        await this.page.evaluate(({ dateOfBirth }) => {
+            document.getElementById('dob').value = dateOfBirth;
+        }, { dateOfBirth });
+
+        await this.phonenumber.fill(phoneNumber);
+
+
+
+        await this.page.evaluate(({ address }) => {
+            document.getElementById('address').value = address;
+        }, { address });
+
+
+        await this.LinkedInUrl.fill(linkedInUrl);
+        await this.GitHubURL.fill(gitHubURL);
+        await this.submitbutton.click();
+    }
 }
